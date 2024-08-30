@@ -1,5 +1,8 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const axios = require('axios');
+
+const trainRouteURL = `${process.env.BACKEND_URL}/trains`;
+console.log(trainRouteURL);  
 
 const coordinates = [
     [79.8500, 6.9337], // Colombo fort
@@ -85,7 +88,7 @@ const coordinates = [
 async function updateTrainLocation(trainRouteNumber, coordinates) {
     try {
         console.log(`Updating train ${trainRouteNumber} to coordinates: ${coordinates}`);
-        const response = await axios.put('http://localhost:3000/trains/updateLocationByNumber', {
+        const response = await axios.put(`${trainRouteURL}/updateLocationByNumber`, {
             trainRouteNumber: trainRouteNumber,
             coordinates: coordinates,
         });
@@ -108,7 +111,7 @@ function getCurrentLocalTime() {
 
 async function checkDepartureTime(trainRouteNumber) {
     try {
-        const response = await axios.get('http://localhost:3000/trains/trainRouteByNumber', {
+        const response = await axios.get(`${trainRouteURL}/trainRouteByNumber`, {
             params: { trainRouteNumber: trainRouteNumber },
         });
 
