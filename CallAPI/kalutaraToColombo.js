@@ -2,7 +2,7 @@ require('dotenv').config({ path: '../.env' });
 const axios = require('axios');
 
 const trainRouteURL = `${process.env.BACKEND_URL}/trains`;
-
+console.log(trainRouteURL);
 
 const coordinates = [
     [79.9588324, 6.5841279],
